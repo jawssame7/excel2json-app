@@ -1,5 +1,7 @@
 import { createContext, useState, MouseEvent, useEffect } from 'react';
-import { AiOutlineFileExcel, AiFillFileExcel, TiArrowRightOutline, VscJson } from 'react-icons/all';
+import { AiOutlineFileExcel, AiFillFileExcel } from 'react-icons/ai';
+import { TiArrowRightOutline } from 'react-icons/ti';
+import { VscJson } from 'react-icons/vsc';
 import FileDropZone from './components/FileDropZone';
 import { sendFile } from './api/Excel2JsonApi';
 import { Excel2JsonContext } from './types/Excel2JsonContext';
