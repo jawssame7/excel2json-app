@@ -5,7 +5,7 @@ require 'recipe/laravel.php';
 
 // Config
 
-set('repository', 'git@github.com:jawssame7/lottery-app.git');
+set('repository', 'git@github.com:jawssame7/excel2json-app.git');
 
 add('shared_files', []);
 add('shared_dirs', []);
