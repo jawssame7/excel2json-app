@@ -1,0 +1,11 @@
+hosts:
+  next-hundred:
+    hostname: conoha-deployer
+    remote_user: deployer
+    deploy_path: ~/workspace/lottery-app
+    branch: master
+    writable_mode: chmod
+    env:
+      environment: production
+    labels:
+      env: prod
