@@ -27,6 +27,7 @@
         "@mdi/js": "^7.2.96",
         "@mdi/react": "^1.6.1",
         "daisyui": "^2.51.5",
-        "react-dropzone": "^14.2.3"
+        "react-dropzone": "^14.2.3",
+        "react-icons": "^4.8.0"
     }
 }

@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 const apiUrl: string = '/api';
 
 export const sendFile = async (file: File) => {

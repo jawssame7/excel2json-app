@@ -1,7 +1,6 @@
-import { createContext, useState, ChangeEvent, MouseEvent, useEffect } from 'react';
-import Icon from '@mdi/react';
+import { createContext, useState, MouseEvent, useEffect } from 'react';
+import { AiOutlineFileExcel, AiFillFileExcel, TiArrowRightOutline, VscJson } from 'react-icons/all';
 import FileDropZone from './components/FileDropZone';
-import { mdiFileExcelBox, mdiFileExcelBoxOutline, mdiCodeJson, mdiArrowRightThin } from '@mdi/js';
 import { sendFile } from './api/Excel2JsonApi';
 import { Excel2JsonContext } from './types/Excel2JsonContext';
 
@@ -24,27 +23,7 @@ function App() {
     }
   }, [file]);
 
-  const onChangeFile = (e: ChangeEvent) => {
-    const files = e.target.files;
-    if (files && files[0]) {
-      setFile(files[0]);
-    }
-  };
-
-  const onClickSendFile = () => {
-    if (!file) {
-      return;
-    }
-    sendFile(file).then((res) => {
-      if (!(200 !== res.status)) {
-        setJson(JSON.stringify(res.data, null, 4));
-        setMinifyJson(JSON.stringify(res.data));
-      }
-    });
-  };
-
   const onClickClipBoardCopy = (e: MouseEvent) => {
-    debugger;
     if (e.target.name === 'targetJson') {
       navigator.clipboard.writeText(json);
     } else {
@@ -59,9 +38,9 @@ function App() {
           <div className="navbar bg-primary text-primary-content rounded-box">
             <h1>
               EXCELからJSONへ
-              <Icon path={mdiFileExcelBoxOutline} size={1} style={{ display: 'inline' }}></Icon>
-              <Icon path={mdiArrowRightThin} size={1} style={{ display: 'inline' }}></Icon>
-              <Icon path={mdiCodeJson} size={1} style={{ display: 'inline' }}></Icon>
+              <AiOutlineFileExcel />
+              <TiArrowRightOutline />
+              <VscJson />
             </h1>
           </div>
         </div>
@@ -119,7 +98,7 @@ function App() {
         </div>
         <footer className="footer items-center p-4 mt-4 bg-neutral text-neutral-content rounded-box ">
           <div className="items-center grid-flow-col">
-            <Icon path={mdiFileExcelBox} size={1}></Icon>
+            <AiFillFileExcel />
             <p>Excel To Json</p>
           </div>
         </footer>
