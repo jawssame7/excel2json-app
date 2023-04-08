@@ -1,8 +1,8 @@
 hosts:
-  next-hundred:
-    hostname: conoha-deployer
+  shomosumi-work:
+    hostname: conoha2-deployer
     remote_user: deployer
-    deploy_path: ~/workspace/lottery-app
+    deploy_path: ~/workspace/excel2json-app
     branch: master
     writable_mode: chmod
     env:
