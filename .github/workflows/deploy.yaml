@@ -17,14 +17,14 @@ jobs:
         with:
           php-version: '8.2'
 
-      - name: Setup Deployer
-        run: curl -LO https://deployer.org/deployer.phar && mv deployer.phar ./dep  && chmod +x ./dep
+      - name: Install dependencies
+        run: composer install
 
       - name: Setup SSH for production
         run: mkdir -p ~/.ssh && echo "${{secrets.DEPLOYER_SSH_PRIVATE_KEY}}" > ~/.ssh/id_rsa && chmod 0600 ~/.ssh/id_rsa
 
       - name: deploy to prod
-        run: ./dep deploy production -vvv
+        run: vendor/bin/dep deploy production -vvv
         env:
           DEPLOYER_SSH_USER: deployer
 
