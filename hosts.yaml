@@ -1,5 +1,5 @@
 hosts:
-  shomosumi-work:
+  production: # shimosumi-work
     hostname: conoha2-deployer
     remote_user: deployer
     deploy_path: ~/workspace/excel2json-app
