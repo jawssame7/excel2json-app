@@ -25,6 +25,15 @@ jobs:
         with:
           dep: deploy production -vvv
           private-key: ${{ secrets.DEPLOYER_SSH_PRIVATE_KEY }}
+          ssh-config: |
+            Host *
+              StrictHostKeyChecking no
+              UserKnownHostsFile=/dev/null
+            Host conoha2-deployer
+              User deployer
+              Port 22
+              HostName 157.7.214.70
+
 
 #      - name: Install SSH key
 #        uses: shimataro/ssh-key-action@v1.6.1
