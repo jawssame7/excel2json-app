@@ -26,6 +26,7 @@ jobs:
           name: -id_rsa-conoha2deployer
           private-key: ${{ secrets.DEPLOYER_SSH_PRIVATE_KEY }}
           config: ${{ secrets.DEPLOYER_CONFIG }} # ssh target だけで接続できるように設定
+          known_hosts: ${{ secrets.DEPLOYER_KNOWN_HOSTS }}
           if_key_exists: replace
 
       - name: Adding Known Hosts
