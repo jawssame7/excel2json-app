@@ -1,0 +1,30 @@
+name: deploy production
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: Setup Deployer
+        run: curl -LO https://deployer.org/deployer.phar && mv deployer.phar ./dep  && chmod +x ./dep
+
+      - name: Setup SSH for production
+        run: mkdir -p ~/.ssh && echo "${{secrets.DEPLOYER_SSH_PRIVATE_KEY}}" > ~/.ssh/id_rsa && chmod 0600 ~/.ssh/id_rsa
+
+      - name: deploy to prod
+        run: ./dep deploy production -vvv
+        env:
+          DEPLOYER_SSH_USER: deployer
+
