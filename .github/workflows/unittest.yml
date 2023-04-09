@@ -25,8 +25,8 @@ jobs:
         with:
           node-version: v18.15.0
           
-      - name: npm install
-        run: npm install
+      - name: npm setup & build
+        run: npm install　&& npm run build
         
       - name: run unit test
         run: vendor/bin/phpunit tests/
