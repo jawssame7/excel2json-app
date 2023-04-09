@@ -3,6 +3,7 @@ import { AiOutlineFileExcel, AiFillFileExcel } from 'react-icons/ai';
 import { TiArrowRightOutline } from 'react-icons/ti';
 import { VscJson } from 'react-icons/vsc';
 import FileDropZone from './components/FileDropZone';
+import JsonDisplay from './components/JsonDisplay';
 import { sendFile } from './api/Excel2JsonApi';
 import { Excel2JsonContext } from './types/Excel2JsonContext';
 
@@ -25,17 +26,9 @@ function App() {
     }
   }, [file]);
 
-  const onClickClipBoardCopy = (e: MouseEvent) => {
-    if (e.target.name === 'targetJson') {
-      navigator.clipboard.writeText(json);
-    } else {
-      navigator.clipboard.writeText(minifyJson);
-    }
-  };
-
   return (
     <div className="container mx-auto px-4">
-      <Context.Provider value={{ setFile, setJson, setMinifyJson }}>
+      <Context.Provider value={{ setFile, json, setJson, minifyJson, setMinifyJson }}>
         <div className="grid grid-flow-row auto-rows-max mt-4">
           <div className="navbar bg-primary text-primary-content rounded-box">
             <h1>
@@ -53,50 +46,8 @@ function App() {
           >
             <FileDropZone />
           </div>
-          <div className={'mt-4 mx-auto'}>
-            <div className={'flex flex-row mt-4'}>
-              <button
-                className={'btn btn-accent'}
-                style={{ width: '300px' }}
-                disabled={!json}
-                name={'targetJson'}
-                onClick={onClickClipBoardCopy}
-              >
-                整形した結果をクリップボードにコピー
-              </button>
-            </div>
-            <div className={'flex flex-row mt-4'}>
-              <textarea
-                className={'textarea textarea-accent textarea-bordered textarea-lg w-full resize-y'}
-                style={{ minHeight: '500px' }}
-                placeholder={'Json'}
-                readOnly={true}
-                value={json}
-              ></textarea>
-            </div>
-          </div>
-          <div className={'mt-4 mx-auto'}>
-            <div className={'flex flex-row mt-4'}>
-              <button
-                className={'btn btn-accent'}
-                name={'targetMinifyJson'}
-                style={{ width: '300px' }}
-                disabled={!minifyJson}
-                onClick={onClickClipBoardCopy}
-              >
-                圧縮した結果をクリップボードにコピー
-              </button>
-            </div>
-            <div className={'flex flex-row mt-4'}>
-              <textarea
-                className={'textarea textarea-accent textarea-bordered textarea-lg w-full resize-y'}
-                style={{ minHeight: '200px' }}
-                placeholder={'minify Json'}
-                readOnly={true}
-                value={minifyJson}
-              ></textarea>
-            </div>
-          </div>
+          <JsonDisplay isMinified={false} />
+          <JsonDisplay isMinified={true} />
         </div>
         <footer className="footer items-center p-4 mt-4 bg-neutral text-neutral-content rounded-box ">
           <div className="items-center grid-flow-col">
