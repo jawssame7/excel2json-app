@@ -24,8 +24,10 @@ jobs:
         uses: shimataro/ssh-key-action@v1.6.1
         with:
           private-key: ${{ secrets.DEPLOYER_SSH_PRIVATE_KEY }}
-          known-hosts: ${{ secrets.DEPLOYER_KNOWN_HOSTS }}
           config: ${{ secrets.DEPLOYER_CONFIG }} # ssh target だけで接続できるように設定
+
+      - name: Adding Known Hosts
+        run: ssh-keyscan -H ${{ secrets.DEPLOYER_SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: deploy to prod
         run: vendor/bin/dep deploy production -vvv
