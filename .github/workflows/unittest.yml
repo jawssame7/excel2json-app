@@ -19,7 +19,6 @@ jobs:
         
       - name: set laravel env
         run: echo "${{ secrets.LARAVEL_ENV }}" > .env
-        working-directory: ./src
 
       - name: run unit test
         run: vendor/bin/phpunit tests/
