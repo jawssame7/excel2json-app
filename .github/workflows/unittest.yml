@@ -16,3 +16,6 @@ jobs:
 
       - name: Install dependencies
         run: composer install
+
+      - name: run unit test
+        run: vendor/bin/phpunit tests/
