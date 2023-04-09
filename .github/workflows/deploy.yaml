@@ -25,11 +25,15 @@ jobs:
         with:
           private-key: ${{ secrets.DEPLOYER_SSH_PRIVATE_KEY }}
           config: ${{ secrets.DEPLOYER_CONFIG }} # ssh target だけで接続できるように設定
+          if_key_exists: replace
 
-      - name: Adding Known Hosts
-        run: ssh-keyscan -H ${{ secrets.DEPLOYER_SSH_HOST }} >> ~/.ssh/known_hosts && chmod 0600 ~/.ssh/known_hosts && chmod 0600 ~/.ssh/id_rsa && chmod 0600 ~/.ssh/config
+      - name: Connect SSH
+        run: ssh conoha2-deployer echo "test"
 
-      - name: deploy to prod
+#      - name: Adding Known Hosts
+#        run: ssh-keyscan -H ${{ secrets.DEPLOYER_SSH_HOST }} >> ~/.ssh/known_hosts && chmod 0600 ~/.ssh/known_hosts && chmod 0600 ~/.ssh/id_rsa && chmod 0600 ~/.ssh/config
+
+      - name: Deploy to production
         run: vendor/bin/dep deploy production -vvv
         env:
           DEPLOYER_SSH_USER: deployer
