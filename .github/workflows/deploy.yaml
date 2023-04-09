@@ -20,11 +20,12 @@ jobs:
       - name: Install dependencies
         run: composer install
 
-      - name: Setup SSH for production
-        run: mkdir -p ~/.ssh && echo "${{secrets.DEPLOYER_SSH_PRIVATE_KEY}}" > ~/.ssh/id_rsa && chmod 0600 ~/.ssh/id_rsa
-
-      - name: Setup SSH Configuration for production
-        run: mkdir -p ~/.ssh && echo "${{secrets.DEPLOYER_CONFIG}}" > ~/.ssh/config && chmod 0600 ~/.ssh/config
+      - name: Install SSH key
+        uses: shimataro/ssh-key-action@v1.6.1
+        with:
+          private-key: ${{ secrets.DEPLOYER_SSH_PRIVATE_KEY }}
+          known-hosts: ${{ secrets.DEPLOYER_KNOWN_HOSTS }}
+          config: ${{ secrets.DEPLOYER_CONFIG }} # ssh target だけで接続できるように設定
 
       - name: deploy to prod
         run: vendor/bin/dep deploy production -vvv
