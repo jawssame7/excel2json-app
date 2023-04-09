@@ -23,7 +23,7 @@ jobs:
       - name: Deploy
         uses: deployphp/action@v1
         with:
-          dep: deploy
+          dep: deploy production -vvv
           private-key: ${{ secrets.DEPLOYER_SSH_PRIVATE_KEY }}
 
 #      - name: Install SSH key
