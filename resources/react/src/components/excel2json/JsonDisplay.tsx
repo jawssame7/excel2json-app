@@ -1,9 +1,9 @@
-import { MouseEvent, useContext, useState } from 'react';
-import { Context } from '../App';
-import Toast from './Toast';
+import { useContext, useState } from 'react';
+import { Excel2jsonContext } from '../content/Excel2Json';
+import Toast from '../common/Toast';
 
 const JsonDisplay = ({ isMinified = false }) => {
-  const { json, setJson, minifyJson, setMinifyJson } = useContext(Context);
+  const { json, setJson, minifyJson, setMinifyJson } = useContext(Excel2jsonContext);
 
   const btnText: string = isMinified
     ? '圧縮した結果をクリップボードにコピー'
@@ -13,7 +13,7 @@ const JsonDisplay = ({ isMinified = false }) => {
 
   const [showToast, isShowToast] = useState(false);
 
-  const onClickClipBoardCopy = (e: MouseEvent) => {
+  const onClickClipBoardCopy = (e: any) => {
     if (e.target.name === 'targetJson') {
       navigator.clipboard.writeText(json);
     } else {
@@ -22,7 +22,7 @@ const JsonDisplay = ({ isMinified = false }) => {
     isShowToast(true);
   };
 
-  const onClickClear = (e: MouseEvent) => {
+  const onClickClear = (e: any) => {
     if (e.target.name === 'clearTargetJson') {
       setJson('');
     } else {

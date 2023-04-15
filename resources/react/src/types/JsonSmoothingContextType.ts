@@ -1,7 +1,6 @@
 import { Dispatch, SetStateAction } from 'react';
 
-export type Excel2JsonContext = {
-  setFile: Dispatch<SetStateAction<File>>;
+export type JsonSmoothingContextType = {
   json: string;
   setJson: Dispatch<SetStateAction<string>>;
   minifyJson: string;

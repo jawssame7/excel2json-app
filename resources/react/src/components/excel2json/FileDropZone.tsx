@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
-import { Context } from '../App';
+import { Excel2jsonContext } from '../content/Excel2Json';
 
 const accept = {
   'application/vnd.ms-excel': ['.xls'],
@@ -21,8 +21,8 @@ const dropZoneStyle = {
 };
 
 const FileDropZone = () => {
-  const { setFile } = useContext(Context);
-  const onDrop = useCallback((acceptedFiles) => {
+  const { setFile } = useContext(Excel2jsonContext);
+  const onDrop = useCallback((acceptedFiles: any) => {
     // Do something with the files
     if (acceptedFiles && acceptedFiles[0]) {
       setFile(acceptedFiles[0]);
